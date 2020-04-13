@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.plazapp.data.*
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import java.util.zip.Inflater
 
 
 class lsttiendas : Fragment() {
@@ -25,6 +26,30 @@ class lsttiendas : Fragment() {
     var lista: ListView? = null
     var doblePanel = false
     var posicionActual = 0
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.mnuAcerca-> acercaDe()
+            R.id.item2-> Item2()
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+    fun acercaDe():Boolean{
+        val intent = Intent( this, lsttiendas::class.java)
+        startActivity(intent)
+        return true
+    }
+    fun Item2():Boolean{
+        val intent = Intent( this, lsttiendas::class.java)
+        startActivity(intent)
+        return true
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -88,30 +113,9 @@ class lsttiendas : Fragment() {
     }
 
 
-/*
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
-            R.id.mnuAcerca-> acercaDe()
-            R.id.item2-> Item2()
-            else -> super.onOptionsItemSelected(item)
-        }
 
-    }
-    fun acercaDe():Boolean{
-        val intent = Intent( this, lsttiendas::class.java)
-        startActivity(intent)
-        return true
-    }
-    fun Item2():Boolean{
-        val intent = Intent( this, lsttiendas::class.java)
-        startActivity(intent)
-        return true
-    }
-    */
+
+
 
 
     fun obtenerNombres(list:ArrayList<Tienda>):ArrayList<String>{
